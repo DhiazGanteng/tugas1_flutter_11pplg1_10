@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:project_dart_1/Contoller/football_controller.dart';
+import 'package:project_dart_1/Controller/football_controller.dart';
 import 'package:project_dart_1/models/player.dart';
 
 class FootballEditController extends GetxController {

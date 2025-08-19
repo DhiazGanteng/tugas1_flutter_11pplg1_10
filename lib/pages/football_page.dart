@@ -1,5 +1,5 @@
-import 'package:project_dart_1/Contoller/football_controller.dart';
-import 'package:project_dart_1/Contoller/football_edit_controller.dart';
+import 'package:project_dart_1/Controller/football_controller.dart';
+import 'package:project_dart_1/Controller/football_edit_controller.dart';
 import 'package:project_dart_1/models/player.dart';
 import 'package:project_dart_1/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class FootballPage extends StatelessWidget {
               onTap: () {
                 final editController = Get.put(FootballEditController());
                 editController.loadPlayerData(player, index);
-                Get.toNamed(AppRoutes.footballedit);
+                Get.toNamed(AppRoutes.footballeditplayers);
               },
               title: Text(player.nama),
               subtitle: Text("${player.position} • #${player.nomorPunggung}"),

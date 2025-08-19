@@ -3,10 +3,8 @@ import 'package:get/get.dart';
 import 'package:project_dart_1/register_page.dart';
 import 'package:project_dart_1/widget/widget_button.dart';
 import 'package:project_dart_1/widget/wiget_controller.dart';
-import 'package:project_dart_1/Contoller/Calculator_Contoller.dart';
+import 'package:project_dart_1/Controller/calculator_controller.dart';
 import 'package:project_dart_1/my_calcu.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,8 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   // Tambahkan controller GetX
-final CalculatorController calculatorController = Get.put(CalculatorController());
-
+  final CalculatorController calculatorController = Get.put(
+    CalculatorController(),
+  );
 
   // Helper function to show a SnackBar
   void _showSnackBar(String message, Color color) {
@@ -46,16 +45,16 @@ final CalculatorController calculatorController = Get.put(CalculatorController()
           children: [
             const Text(
               "Welcome to our first app!",
-              style: TextStyle(fontSize: 20, color: Colors.blue, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const Text("Please using your email and password!"),
             const SizedBox(height: 20),
             Center(
-              child: Image.asset(
-                'aset/image/sae.jpg',
-                width: 100,
-                height: 100,
-              ),
+              child: Image.asset('aset/image/sae.jpg', width: 100, height: 100),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20, bottom: 20),
@@ -90,7 +89,10 @@ final CalculatorController calculatorController = Get.put(CalculatorController()
                         MaterialPageRoute(builder: (context) => MyCalcu()),
                       );
                     } else {
-                      _showSnackBar('Invalid username or password.', Colors.red);
+                      _showSnackBar(
+                        'Invalid username or password.',
+                        Colors.red,
+                      );
                     }
                   },
                 ),
@@ -103,7 +105,9 @@ final CalculatorController calculatorController = Get.put(CalculatorController()
                 OnPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const RegisterPage()),
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterPage(),
+                    ),
                   );
                 },
               ),
@@ -112,14 +116,16 @@ final CalculatorController calculatorController = Get.put(CalculatorController()
 
             // ✅ Tambahkan Obx di bawah tombol
             Center(
-              child: Obx(() => Text(
-                    "Hasil: ${calculatorController.hasil.value}",
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
-                    ),
-                  )),
+              child: Obx(
+                () => Text(
+                  "Hasil: ${calculatorController.hasil.value}",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

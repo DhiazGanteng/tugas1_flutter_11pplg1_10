@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_dart_1/Components/input_field.dart';
-import 'package:project_dart_1/Contoller/football_Edit_Controller.dart';
+import 'package:project_dart_1/Controller/football_edit_controller.dart';
+
 
 
 

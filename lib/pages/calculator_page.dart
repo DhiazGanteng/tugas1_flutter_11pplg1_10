@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_dart_1/Contoller/Calculator_Contoller.dart';
+import 'package:project_dart_1/Controller/calculator_controller.dart';
 import 'package:project_dart_1/routes/routes.dart';
 import 'package:project_dart_1/widget/widget_button.dart';
 import 'package:project_dart_1/widget/wiget_controller.dart';
@@ -51,7 +51,7 @@ final CalculatorController calculatorController = Get.put(CalculatorController()
             text: "Move to footballplayer",
             textColor: Colors.green,
             OnPressed: () {
-               Get.toNamed(AppRoutes.footballplayer);
+               Get.toNamed(AppRoutes.footballplayers);
             },
           ),       
         ],
