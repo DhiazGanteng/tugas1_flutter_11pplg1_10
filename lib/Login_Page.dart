@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // Halaman setelah login berhasil
-import 'register_page.dart'; // <--- Tambahkan ini!
+import 'package:get/get.dart';
+import 'package:project_dart_1/register_page.dart';
+import 'package:project_dart_1/widget/widget_button.dart';
+import 'package:project_dart_1/widget/wiget_controller.dart';
+import 'package:project_dart_1/Contoller/Calculator_Contoller.dart';
+import 'package:project_dart_1/my_calcu.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,9 +16,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Declare TextEditingController for username and password
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  // Tambahkan controller GetX
+final CalculatorController calculatorController = Get.put(CalculatorController());
+
+
+  // Helper function to show a SnackBar
   void _showSnackBar(String message, Color color) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -34,74 +46,80 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             const Text(
               "Welcome to our first app!",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, color: Colors.blue, fontWeight: FontWeight.bold),
             ),
             const Text("Please using your email and password!"),
             const SizedBox(height: 20),
             Center(
-              child: Image.asset('assets/cat.jpg', width: 100, height: 100),
+              child: Image.asset(
+                'aset/image/sae.jpg',
+                width: 100,
+                height: 100,
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20, bottom: 20),
-              child: TextField(
-                controller: _usernameController,
-                decoration: const InputDecoration(
-                  labelText: "Username",
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: "Password",
-                border: OutlineInputBorder(),
+              child: MyTextField(
+                textEditingController: _usernameController,
+                labelText: "Input Username",
+                IsPassword: false,
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 20, bottom: 10),
+              margin: const EdgeInsets.only(top: 20, bottom: 20),
+              child: MyTextField(
+                textEditingController: _passwordController,
+                labelText: "Input Password",
+                IsPassword: true,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 20, bottom: 20),
               child: Center(
-                child: ElevatedButton(
-                  onPressed: () {
+                child: CustomButton(
+                  text: "Login",
+                  textColor: Colors.blue,
+                  OnPressed: () {
                     final String username = _usernameController.text;
                     final String password = _passwordController.text;
 
-                    if (username == 'baba' && password == 'Kudus123') {
+                    if (username == 'ghasia' && password == 'admin123') {
                       _showSnackBar('Login successful!', Colors.green);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const CalculatorPage(),
-                        ),
+                        MaterialPageRoute(builder: (context) => MyCalcu()),
                       );
                     } else {
-                      _showSnackBar(
-                        'Invalid username or password.',
-                        Colors.red,
-                      );
+                      _showSnackBar('Invalid username or password.', Colors.red);
                     }
                   },
-                  child: const Text("Login"),
                 ),
               ),
             ),
             Center(
-              child: TextButton(
-                onPressed: () {
+              child: CustomButton(
+                text: "Register",
+                textColor: Colors.red,
+                OnPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const RegisterPage(),
-                    ),
+                    MaterialPageRoute(builder: (context) => const RegisterPage()),
                   );
                 },
-                child: const Text("Belum punya akun? Daftar di sini"),
               ),
+            ),
+            const SizedBox(height: 30),
+
+            // ✅ Tambahkan Obx di bawah tombol
+            Center(
+              child: Obx(() => Text(
+                    "Hasil: ${calculatorController.hasil.value}",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepPurple,
+                    ),
+                  )),
             ),
           ],
         ),
